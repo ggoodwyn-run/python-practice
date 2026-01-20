@@ -118,10 +118,6 @@ def sum_list(nums):
     return total
 
 
-numbers = [3,3,1]
-print(sum_list(numbers))
-
-
 
 # Palidrome check
 
@@ -132,7 +128,108 @@ def is_palindrome(s):
         new_word = new_word + s[-i]
 
     if new_word == s:
-        True
+        return True
+    else:
+        return False
 
 
-word = "Race"
+
+
+# two sum
+
+
+
+def two_sums(nums, target):
+    for i in range(len(nums)):
+        if i + (i + 1) == target:
+            return True
+            if i + (i + 2) == target:
+                return True
+            
+
+# Test
+
+def two_sums(nums, target):
+    seen = set()
+    for num in nums:
+        if target - num in seen:
+            return True
+        seen.add(num)
+    return False
+
+numbers = [3, 9, 2, 11, 4]
+
+two_sums(numbers, 12)
+
+
+## Day 3 Drills
+
+# First Duplicate
+
+def first_duplicate(nums):
+    seen = set()
+    seen.add(nums[0])
+    for i in range(1, len(nums)):
+        if nums[i] in seen:
+            return nums[i]
+        seen.add(nums[i])
+    return None
+    
+
+numbers = [2, 3, 5, 7, 6, 4]
+
+first_duplicate(numbers)
+
+# Valid anagram
+
+def is_anagram(s: str, t: str) -> bool:
+    if len(s) != len(t):
+        return False
+
+    freq = {}
+    for ch in s:
+        freq[ch] = freq.get(ch, 0) + 1
+
+    for ch in t:
+        if ch not in freq:
+            return False
+        freq[ch] -= 1
+        if freq[ch] < 0:
+            return False
+
+    return True
+
+# is duplicate
+
+def is_duplicate(nums) -> bool:
+    seen = set()
+    seen.add(nums[0])
+    for i in range(1, len(nums)):
+        if nums[i] in seen:
+            return True
+        seen.add(nums[i])
+    return False
+
+
+def max_profit(nums) -> int:
+    if not nums:
+        return 0
+
+    min_price = nums[0]
+    best = 0
+
+    for i in range(1, len(nums)):
+        profit = nums[i] - min_price
+        best = max(best, profit)
+        min_price = min(min_price, nums[i])
+
+    return best
+    
+
+
+
+prices = [10,2,3,4,10]
+max_profit(prices)
+
+
+
